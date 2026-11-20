@@ -35,11 +35,41 @@ class CreateSessionRequest(BaseModel):
 
 class SessionResponse(BaseModel):
     id: str
+    client_token: str
     track: str
     difficulty: str
     status: str
     question_count: int
     questions: list[QuestionPublic]
+
+
+class SessionSummary(BaseModel):
+    id: str
+    track: str
+    difficulty: str
+    question_count: int
+    score_correct: int | None
+    score_total: int | None
+    percent: int | None
+    status: str
+    submitted_at: str | None
+    created_at: str
+
+
+class DashboardResponse(BaseModel):
+    recent: list[SessionSummary]
+    sessions_this_week: int
+    overall_percent: int
+    total_correct: int
+    total_questions: int
+    ready_label: str
+
+
+class HistoryResponse(BaseModel):
+    items: list[SessionSummary]
+    total: int
+    limit: int
+    offset: int
 
 
 class AnswerItem(BaseModel):

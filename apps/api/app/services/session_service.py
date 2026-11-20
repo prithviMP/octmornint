@@ -1,7 +1,8 @@
-from datetime import datetime, timezone
+import uuid
+from datetime import datetime, timedelta, timezone
 
 from fastapi import HTTPException
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models import InterviewSession, SessionAnswer
@@ -16,9 +17,50 @@ def _public_questions(questions) -> list[QuestionPublic]:
     ]
 
 
-def create_session(db: Session, track: str, difficulty: str, question_count: int) -> InterviewSession:
+def _iso(dt: datetime | None) -> str | None:
+    if dt is None:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.isoformat()
+
+
+def _ready_label(percent: int) -> str:
+    if percent >= 80:
+        return "Ready"
+    if percent >= 60:
+        return "Almost there"
+    if percent > 0:
+        return "Keep practicing"
+    return "Start practicing"
+
+
+def session_summary(session: InterviewSession) -> dict:
+    return {
+        "id": session.id,
+        "track": session.track,
+        "difficulty": session.difficulty,
+        "question_count": session.question_count,
+        "score_correct": session.score_correct,
+        "score_total": session.score_total,
+        "percent": session.percent,
+        "status": session.status,
+        "submitted_at": _iso(session.submitted_at),
+        "created_at": _iso(session.created_at) or "",
+    }
+
+
+def create_session(
+    db: Session,
+    track: str,
+    difficulty: str,
+    question_count: int,
+    client_token: str | None = None,
+) -> InterviewSession:
+    token = (client_token or "").strip() or str(uuid.uuid4())
     questions = bank.sample_questions(db, track, difficulty, question_count)
     session = InterviewSession(
+        client_token=token,
         track=track,
         difficulty=difficulty,
         question_count=question_count,
@@ -45,11 +87,87 @@ def session_with_questions(db: Session, session: InterviewSession) -> dict:
     questions = bank.get_questions_by_ids(db, session.question_ids)
     return {
         "id": session.id,
+        "client_token": session.client_token,
         "track": session.track,
         "difficulty": session.difficulty,
         "status": session.status,
         "question_count": session.question_count,
         "questions": _public_questions(questions),
+    }
+
+
+def list_summaries(
+    db: Session,
+    client_token: str,
+    *,
+    status: str | None = "submitted",
+    limit: int = 20,
+    offset: int = 0,
+    since: datetime | None = None,
+) -> tuple[list[dict], int]:
+    filters = [InterviewSession.client_token == client_token]
+    if status:
+        filters.append(InterviewSession.status == status)
+    if since is not None:
+        filters.append(InterviewSession.submitted_at >= since)
+
+    total = db.scalar(
+        select(func.count()).select_from(InterviewSession).where(*filters)
+    ) or 0
+
+    rows = db.scalars(
+        select(InterviewSession)
+        .where(*filters)
+        .order_by(
+            InterviewSession.submitted_at.desc(),
+            InterviewSession.created_at.desc(),
+        )
+        .limit(limit)
+        .offset(offset)
+    ).all()
+    return [session_summary(s) for s in rows], int(total)
+
+
+def dashboard_for_client(db: Session, client_token: str) -> dict:
+    now = datetime.now(timezone.utc)
+    week_start = now - timedelta(days=now.weekday())
+    week_start = week_start.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    recent, _ = list_summaries(db, client_token, status="submitted", limit=8, offset=0)
+
+    week_count = (
+        db.scalar(
+            select(func.count())
+            .select_from(InterviewSession)
+            .where(
+                InterviewSession.client_token == client_token,
+                InterviewSession.status == "submitted",
+                InterviewSession.submitted_at >= week_start,
+            )
+        )
+        or 0
+    )
+
+    totals = db.execute(
+        select(
+            func.coalesce(func.sum(InterviewSession.score_correct), 0),
+            func.coalesce(func.sum(InterviewSession.score_total), 0),
+        ).where(
+            InterviewSession.client_token == client_token,
+            InterviewSession.status == "submitted",
+        )
+    ).one()
+    total_correct = int(totals[0] or 0)
+    total_questions = int(totals[1] or 0)
+    overall_percent = round(100 * total_correct / total_questions) if total_questions else 0
+
+    return {
+        "recent": recent,
+        "sessions_this_week": int(week_count),
+        "overall_percent": overall_percent,
+        "total_correct": total_correct,
+        "total_questions": total_questions,
+        "ready_label": _ready_label(overall_percent),
     }
 
 

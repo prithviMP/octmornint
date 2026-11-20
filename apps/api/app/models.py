@@ -35,6 +35,7 @@ class InterviewSession(Base):
     __tablename__ = "interview_sessions"
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    client_token: Mapped[str] = mapped_column(String(36), index=True, default=_uuid)
     track: Mapped[str] = mapped_column(String(32))
     difficulty: Mapped[str] = mapped_column(String(16))
     question_count: Mapped[int] = mapped_column(Integer)

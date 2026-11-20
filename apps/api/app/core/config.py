@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    app_name: str = "Interview Practice API"
+    app_name: str = "PrepPulse API"
     database_url: str = "sqlite:///./data/app.db"
     seed_on_boot: bool = True
     cors_origins: str = "http://localhost:3000"

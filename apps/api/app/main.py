@@ -3,15 +3,17 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import catalog, health, sessions
+from app.api import catalog, dashboard, health, sessions
 from app.core.config import get_settings
 from app.db import Base, SessionLocal, engine
+from app.db_migrate import ensure_schema
 from app.services import bank
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    ensure_schema(engine)
     settings = get_settings()
     if settings.seed_on_boot:
         db = SessionLocal()
@@ -35,6 +37,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router, prefix="/api/v1")
     app.include_router(catalog.router, prefix="/api/v1")
     app.include_router(sessions.router, prefix="/api/v1")
+    app.include_router(dashboard.router, prefix="/api/v1")
     return app
 
 
