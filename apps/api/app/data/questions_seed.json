@@ -1,0 +1,1562 @@
+[
+  {
+    "track": "dsa",
+    "difficulty": "easy",
+    "stem": "Average time complexity of hash map lookup?",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(n)"
+      },
+      {
+        "id": "b",
+        "text": "O(1)"
+      },
+      {
+        "id": "c",
+        "text": "O(log n)"
+      },
+      {
+        "id": "d",
+        "text": "O(n log n)"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Average-case hash map lookup is O(1); worst case can degrade to O(n).",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "easy",
+    "stem": "Which structure is typically LIFO?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Queue"
+      },
+      {
+        "id": "b",
+        "text": "Stack"
+      },
+      {
+        "id": "c",
+        "text": "Heap"
+      },
+      {
+        "id": "d",
+        "text": "Hash set"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "A stack is last-in, first-out (LIFO).",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "easy",
+    "stem": "Binary search requires the array to be:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unsorted"
+      },
+      {
+        "id": "b",
+        "text": "Sorted"
+      },
+      {
+        "id": "c",
+        "text": "Circular"
+      },
+      {
+        "id": "d",
+        "text": "Sparse"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Binary search needs sorted order to discard half each step.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "easy",
+    "stem": "Space complexity of an iterative in-place reverse of an array?",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(n)"
+      },
+      {
+        "id": "b",
+        "text": "O(log n)"
+      },
+      {
+        "id": "c",
+        "text": "O(1)"
+      },
+      {
+        "id": "d",
+        "text": "O(n^2)"
+      }
+    ],
+    "correct_option_id": "c",
+    "explanation": "Swapping in place uses constant extra memory.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "easy",
+    "stem": "BFS on a graph commonly uses which structure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stack"
+      },
+      {
+        "id": "b",
+        "text": "Queue"
+      },
+      {
+        "id": "c",
+        "text": "Priority queue only"
+      },
+      {
+        "id": "d",
+        "text": "Trie"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "BFS explores level by level with a queue.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "medium",
+    "stem": "Detect a cycle in a linked list with O(1) extra space using:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hashing all nodes"
+      },
+      {
+        "id": "b",
+        "text": "Floyd's tortoise and hare"
+      },
+      {
+        "id": "c",
+        "text": "Sorting pointers"
+      },
+      {
+        "id": "d",
+        "text": "Recursion stack only"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Two pointers moving at different speeds meet if a cycle exists.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "medium",
+    "stem": "Best average-case complexity among comparison sorts for general arrays?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Bubble sort O(n^2)"
+      },
+      {
+        "id": "b",
+        "text": "Merge/Heap/Quick average O(n log n)"
+      },
+      {
+        "id": "c",
+        "text": "Selection O(n)"
+      },
+      {
+        "id": "d",
+        "text": "Insertion O(1)"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Efficient comparison sorts are \u0398(n log n) on average.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "medium",
+    "stem": "In a max-heap, the largest element is at:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A leaf"
+      },
+      {
+        "id": "b",
+        "text": "The root"
+      },
+      {
+        "id": "c",
+        "text": "An arbitrary middle node"
+      },
+      {
+        "id": "d",
+        "text": "The rightmost node only"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Heap property keeps the maximum at the root in a max-heap.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "medium",
+    "stem": "Two-sum in O(n) average time typically uses:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nested loops only"
+      },
+      {
+        "id": "b",
+        "text": "A hash map of seen values"
+      },
+      {
+        "id": "c",
+        "text": "DFS"
+      },
+      {
+        "id": "d",
+        "text": "Segment tree"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Store complements in a hash map while scanning once.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "medium",
+    "stem": "Dijkstra's algorithm fails with:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Positive weights"
+      },
+      {
+        "id": "b",
+        "text": "Negative edge weights"
+      },
+      {
+        "id": "c",
+        "text": "Dense graphs"
+      },
+      {
+        "id": "d",
+        "text": "Undirected graphs"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Classic Dijkstra assumes non-negative edge weights.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "hard",
+    "stem": "Time complexity of building a segment tree over n elements (standard bottom-up/top-down)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(1)"
+      },
+      {
+        "id": "b",
+        "text": "O(n)"
+      },
+      {
+        "id": "c",
+        "text": "O(n^2)"
+      },
+      {
+        "id": "d",
+        "text": "O(2^n)"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "A segment tree has O(n) nodes and each is initialized once \u2192 O(n).",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "hard",
+    "stem": "Union-Find with path compression + union by rank amortizes nearly:",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(n) per op"
+      },
+      {
+        "id": "b",
+        "text": "O(\u03b1(n)) per op"
+      },
+      {
+        "id": "c",
+        "text": "O(log log n) worst always"
+      },
+      {
+        "id": "d",
+        "text": "O(n log n) per op"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Ackermann inverse \u03b1(n) is effectively constant for practical n.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "hard",
+    "stem": "KMP failure function (LPS) preprocessing for pattern length m is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(m)"
+      },
+      {
+        "id": "b",
+        "text": "O(m^2)"
+      },
+      {
+        "id": "c",
+        "text": "O(2^m)"
+      },
+      {
+        "id": "d",
+        "text": "O(1)"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "LPS is computed in linear time in the pattern length.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "hard",
+    "stem": "In a balanced BST of n nodes, delete is typically:",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(1)"
+      },
+      {
+        "id": "b",
+        "text": "O(log n)"
+      },
+      {
+        "id": "c",
+        "text": "O(n)"
+      },
+      {
+        "id": "d",
+        "text": "O(n log n)"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Height is O(log n), so search/delete follow that bound.",
+    "source": "bank"
+  },
+  {
+    "track": "dsa",
+    "difficulty": "hard",
+    "stem": "0/1 knapsack DP with capacity W and n items uses time:",
+    "options": [
+      {
+        "id": "a",
+        "text": "O(n+W)"
+      },
+      {
+        "id": "b",
+        "text": "O(nW)"
+      },
+      {
+        "id": "c",
+        "text": "O(n^W)"
+      },
+      {
+        "id": "d",
+        "text": "O(W log n)"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Classic DP fills an n\u00d7W table (or optimized 1D) in O(nW).",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "easy",
+    "stem": "SOLID 'S' stands for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Static typing"
+      },
+      {
+        "id": "b",
+        "text": "Single Responsibility"
+      },
+      {
+        "id": "c",
+        "text": "Shared state"
+      },
+      {
+        "id": "d",
+        "text": "Strict inheritance"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Single Responsibility Principle: one reason to change.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "easy",
+    "stem": "Which pattern creates families of related objects without specifying concrete classes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Singleton"
+      },
+      {
+        "id": "b",
+        "text": "Abstract Factory"
+      },
+      {
+        "id": "c",
+        "text": "Observer"
+      },
+      {
+        "id": "d",
+        "text": "Adapter"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Abstract Factory produces related product families.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "easy",
+    "stem": "Getter that exposes a mutable internal list directly often violates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Encapsulation"
+      },
+      {
+        "id": "b",
+        "text": "Polymorphism only"
+      },
+      {
+        "id": "c",
+        "text": "DNS"
+      },
+      {
+        "id": "d",
+        "text": "HTTP"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Callers can mutate internals; prefer copies or unmodifiable views.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "easy",
+    "stem": "Composition over inheritance means prefer:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Deep class hierarchies"
+      },
+      {
+        "id": "b",
+        "text": "Has-a relationships / delegation"
+      },
+      {
+        "id": "c",
+        "text": "Global statics"
+      },
+      {
+        "id": "d",
+        "text": "Friend classes everywhere"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Favor composing behaviors instead of fragile inheritance trees.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "easy",
+    "stem": "Observer pattern is useful when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "You need one global instance"
+      },
+      {
+        "id": "b",
+        "text": "Many listeners react to state changes"
+      },
+      {
+        "id": "c",
+        "text": "You convert interfaces"
+      },
+      {
+        "id": "d",
+        "text": "You cache DB rows"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Observers subscribe to subject notifications.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "medium",
+    "stem": "Dependency Inversion prefers depending on:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Concrete classes only"
+      },
+      {
+        "id": "b",
+        "text": "Abstractions/interfaces"
+      },
+      {
+        "id": "c",
+        "text": "Global variables"
+      },
+      {
+        "id": "d",
+        "text": "File paths"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "High-level modules should depend on abstractions.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "medium",
+    "stem": "Strategy pattern primarily enables:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Swappable algorithms at runtime"
+      },
+      {
+        "id": "b",
+        "text": "One-instance guarantee"
+      },
+      {
+        "id": "c",
+        "text": "SQL generation"
+      },
+      {
+        "id": "d",
+        "text": "GC tuning"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Strategies encapsulate interchangeable behaviors.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "medium",
+    "stem": "A God class usually signals violation of:",
+    "options": [
+      {
+        "id": "a",
+        "text": "SRP"
+      },
+      {
+        "id": "b",
+        "text": "DNS caching"
+      },
+      {
+        "id": "c",
+        "text": "TLS"
+      },
+      {
+        "id": "d",
+        "text": "UTF-8"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Too many responsibilities belong in separate classes.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "medium",
+    "stem": "Factory Method differs from simple new by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hiding instantiation behind a method/subclass hook"
+      },
+      {
+        "id": "b",
+        "text": "Always using reflection"
+      },
+      {
+        "id": "c",
+        "text": "Forcing singletons"
+      },
+      {
+        "id": "d",
+        "text": "Banning polymorphism"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Subclasses decide which concrete product to create.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "medium",
+    "stem": "Open/Closed Principle encourages:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Editing core classes for every feature"
+      },
+      {
+        "id": "b",
+        "text": "Extending via new code without modifying stable modules"
+      },
+      {
+        "id": "c",
+        "text": "No interfaces"
+      },
+      {
+        "id": "d",
+        "text": "Circular deps"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Open for extension, closed for modification.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "hard",
+    "stem": "In a thread-safe lazy Singleton in Java-like languages, a common correct approach is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Double-checked locking with volatile/atomic init or holder idiom"
+      },
+      {
+        "id": "b",
+        "text": "Public mutable static field set anywhere"
+      },
+      {
+        "id": "c",
+        "text": "No synchronization ever"
+      },
+      {
+        "id": "d",
+        "text": "Clone without override"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Need safe publication; holder class or proper DCL is standard.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "hard",
+    "stem": "Liskov Substitution is broken when a subclass:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Strengthens preconditions or weakens postconditions unexpectedly"
+      },
+      {
+        "id": "b",
+        "text": "Adds new methods"
+      },
+      {
+        "id": "c",
+        "text": "Uses composition"
+      },
+      {
+        "id": "d",
+        "text": "Implements an interface"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Subtypes must honor the base contract for substitutability.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "hard",
+    "stem": "Repository pattern mainly separates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Domain logic from data-access details"
+      },
+      {
+        "id": "b",
+        "text": "CSS from HTML"
+      },
+      {
+        "id": "c",
+        "text": "TCP from UDP"
+      },
+      {
+        "id": "d",
+        "text": "CI from CD"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Repositories abstract persistence behind a collection-like API.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "hard",
+    "stem": "Circuit breaker in client design primarily protects against:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cascading failures to an unhealthy dependency"
+      },
+      {
+        "id": "b",
+        "text": "Slow CSS"
+      },
+      {
+        "id": "c",
+        "text": "Disk fragmentation"
+      },
+      {
+        "id": "d",
+        "text": "Unicode NFC"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "It trips open after failures to fail fast and recover.",
+    "source": "bank"
+  },
+  {
+    "track": "lld",
+    "difficulty": "hard",
+    "stem": "Anemic domain model critique says domain objects:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hold data but lack behavior/business rules"
+      },
+      {
+        "id": "b",
+        "text": "Are too encapsulated"
+      },
+      {
+        "id": "c",
+        "text": "Cannot use DTOs"
+      },
+      {
+        "id": "d",
+        "text": "Must be immutable always"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Business logic ends up in services instead of the model.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "easy",
+    "stem": "Horizontal scaling means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Bigger single machine"
+      },
+      {
+        "id": "b",
+        "text": "Adding more machines/instances"
+      },
+      {
+        "id": "c",
+        "text": "Only caching"
+      },
+      {
+        "id": "d",
+        "text": "Only sharding Redis"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Scale out by adding nodes.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "easy",
+    "stem": "CDN mainly helps by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Running SQL closer to users"
+      },
+      {
+        "id": "b",
+        "text": "Caching static assets at edge locations"
+      },
+      {
+        "id": "c",
+        "text": "Replacing load balancers"
+      },
+      {
+        "id": "d",
+        "text": "Encrypting DB rows"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Edge caches reduce latency for static content.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "easy",
+    "stem": "CAP theorem: under partition you must choose between:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Consistency and availability"
+      },
+      {
+        "id": "b",
+        "text": "CPU and RAM"
+      },
+      {
+        "id": "c",
+        "text": "TCP and UDP"
+      },
+      {
+        "id": "d",
+        "text": "Batch and stream"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "In a partition, systems trade C vs A.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "easy",
+    "stem": "A load balancer typically sits:",
+    "options": [
+      {
+        "id": "a",
+        "text": "In front of app servers"
+      },
+      {
+        "id": "b",
+        "text": "Inside every browser"
+      },
+      {
+        "id": "c",
+        "text": "Only in the database"
+      },
+      {
+        "id": "d",
+        "text": "On the CI runner only"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "It distributes traffic across backend instances.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "easy",
+    "stem": "Cache-aside pattern means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "App reads cache; on miss loads DB then fills cache"
+      },
+      {
+        "id": "b",
+        "text": "DB writes only to cache"
+      },
+      {
+        "id": "c",
+        "text": "CDN replaces DB"
+      },
+      {
+        "id": "d",
+        "text": "No invalidation ever"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Application owns cache population on miss.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "medium",
+    "stem": "Idempotent POST design often uses:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Idempotency keys"
+      },
+      {
+        "id": "b",
+        "text": "Random sleeps"
+      },
+      {
+        "id": "c",
+        "text": "Larger payloads"
+      },
+      {
+        "id": "d",
+        "text": "Disabling retries"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Clients send a key so retries do not double-charge/create.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "medium",
+    "stem": "Message queue primarily helps with:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Decoupling producers/consumers and buffering load"
+      },
+      {
+        "id": "b",
+        "text": "Replacing TLS"
+      },
+      {
+        "id": "c",
+        "text": "UI theming"
+      },
+      {
+        "id": "d",
+        "text": "DNSSEC"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Async messaging smooths spikes and decouples services.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "medium",
+    "stem": "Read replicas are mainly for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Scaling reads"
+      },
+      {
+        "id": "b",
+        "text": "Stronger multi-master writes by default"
+      },
+      {
+        "id": "c",
+        "text": "Removing backups"
+      },
+      {
+        "id": "d",
+        "text": "Avoiding indexes"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Replicas serve read traffic; writes go to primary.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "medium",
+    "stem": "Rate limiting at the edge protects:",
+    "options": [
+      {
+        "id": "a",
+        "text": "APIs from abusive/burst traffic"
+      },
+      {
+        "id": "b",
+        "text": "Only disk IO inside Postgres"
+      },
+      {
+        "id": "c",
+        "text": "CSS specificity"
+      },
+      {
+        "id": "d",
+        "text": "Git history"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Limits request rates per key/IP/token.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "medium",
+    "stem": "Eventual consistency means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Replicas may lag but converge if no new updates"
+      },
+      {
+        "id": "b",
+        "text": "All reads are linearizable always"
+      },
+      {
+        "id": "c",
+        "text": "No replication"
+      },
+      {
+        "id": "d",
+        "text": "Only ACID local files"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Given time and no new writes, replicas agree.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "hard",
+    "stem": "Consistent hashing helps when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Adding/removing cache nodes with minimal remapping"
+      },
+      {
+        "id": "b",
+        "text": "Sorting integers"
+      },
+      {
+        "id": "c",
+        "text": "Parsing HTML"
+      },
+      {
+        "id": "d",
+        "text": "TLS handshakes"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Keys move only near the changed node on the ring.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "hard",
+    "stem": "Saga pattern coordinates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Distributed transactions via local steps + compensations"
+      },
+      {
+        "id": "b",
+        "text": "Single-row locks only"
+      },
+      {
+        "id": "c",
+        "text": "CSS animations"
+      },
+      {
+        "id": "d",
+        "text": "Certificate pinning"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Long-running business transactions across services.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "hard",
+    "stem": "Bloom filters can have:",
+    "options": [
+      {
+        "id": "a",
+        "text": "False positives but not false negatives (for membership)"
+      },
+      {
+        "id": "b",
+        "text": "Only false negatives"
+      },
+      {
+        "id": "c",
+        "text": "Perfect accuracy always"
+      },
+      {
+        "id": "d",
+        "text": "No hash functions"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Might say present when absent; never miss a true member if configured correctly.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "hard",
+    "stem": "Quorum reads/writes (R+W>N) aim to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Overlap majorities for fresher consistency"
+      },
+      {
+        "id": "b",
+        "text": "Eliminate all network partitions"
+      },
+      {
+        "id": "c",
+        "text": "Replace consensus entirely always"
+      },
+      {
+        "id": "d",
+        "text": "Avoid replication"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Majority intersection reduces stale reads.",
+    "source": "bank"
+  },
+  {
+    "track": "hld",
+    "difficulty": "hard",
+    "stem": "Backpressure in streaming systems means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Slow consumers signal producers to slow down"
+      },
+      {
+        "id": "b",
+        "text": "Always drop all messages"
+      },
+      {
+        "id": "c",
+        "text": "Disable monitoring"
+      },
+      {
+        "id": "d",
+        "text": "Infinite unbounded buffers only"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Flow control prevents overload.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "easy",
+    "stem": "HTTP status 404 means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unauthorized"
+      },
+      {
+        "id": "b",
+        "text": "Not Found"
+      },
+      {
+        "id": "c",
+        "text": "Server error"
+      },
+      {
+        "id": "d",
+        "text": "Redirect"
+      }
+    ],
+    "correct_option_id": "b",
+    "explanation": "Resource not found.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "easy",
+    "stem": "JWT access tokens are commonly sent via:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Authorization: Bearer header"
+      },
+      {
+        "id": "b",
+        "text": "Only in CSS"
+      },
+      {
+        "id": "c",
+        "text": "ICMP"
+      },
+      {
+        "id": "d",
+        "text": "robots.txt"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Bearer tokens in Authorization header are standard.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "easy",
+    "stem": "REST GET requests should be:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Safe/idempotent (no side effects)"
+      },
+      {
+        "id": "b",
+        "text": "Always mutating DB"
+      },
+      {
+        "id": "c",
+        "text": "Forbidden to cache"
+      },
+      {
+        "id": "d",
+        "text": "Only for file upload"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "GET is safe and idempotent by convention.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "easy",
+    "stem": "CORS is enforced by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Browsers on cross-origin requests"
+      },
+      {
+        "id": "b",
+        "text": "DNS only"
+      },
+      {
+        "id": "c",
+        "text": "Postgres triggers"
+      },
+      {
+        "id": "d",
+        "text": "npm"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Browsers apply CORS; servers declare allowed origins.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "easy",
+    "stem": "Next.js App Router pages live under:",
+    "options": [
+      {
+        "id": "a",
+        "text": "app/ directory"
+      },
+      {
+        "id": "b",
+        "text": "Only public/css"
+      },
+      {
+        "id": "c",
+        "text": "node_modules"
+      },
+      {
+        "id": "d",
+        "text": ".git/hooks"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "App Router uses the app directory.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "medium",
+    "stem": "Optimistic UI update means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Update UI before server confirms, reconcile on failure"
+      },
+      {
+        "id": "b",
+        "text": "Never call the API"
+      },
+      {
+        "id": "c",
+        "text": "Block UI until timeout always"
+      },
+      {
+        "id": "d",
+        "text": "Only use SSR"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Assume success then roll back if the request fails.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "medium",
+    "stem": "SQL injection is best prevented by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Parameterized queries / ORM binds"
+      },
+      {
+        "id": "b",
+        "text": "String concat of user input"
+      },
+      {
+        "id": "c",
+        "text": "Disabling HTTPS"
+      },
+      {
+        "id": "d",
+        "text": "Larger connection pools"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Never interpolate untrusted input into SQL.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "medium",
+    "stem": "httpOnly cookies help mitigate:",
+    "options": [
+      {
+        "id": "a",
+        "text": "XSS theft of cookie via document.cookie"
+      },
+      {
+        "id": "b",
+        "text": "All CSRF by themselves"
+      },
+      {
+        "id": "c",
+        "text": "DNS spoofing"
+      },
+      {
+        "id": "d",
+        "text": "Disk full"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "JS cannot read httpOnly cookies; CSRF needs other defenses.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "medium",
+    "stem": "SSR primarily improves:",
+    "options": [
+      {
+        "id": "a",
+        "text": "First paint/SEO for content-heavy pages"
+      },
+      {
+        "id": "b",
+        "text": "Only WebSocket latency"
+      },
+      {
+        "id": "c",
+        "text": "DB vacuum speed"
+      },
+      {
+        "id": "d",
+        "text": "GPU shaders"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "HTML is rendered on the server for faster meaningful paint.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "medium",
+    "stem": "Idempotent PUT vs POST:",
+    "options": [
+      {
+        "id": "a",
+        "text": "PUT same resource repeatedly yields same state; POST may create multiples"
+      },
+      {
+        "id": "b",
+        "text": "They are identical"
+      },
+      {
+        "id": "c",
+        "text": "POST is always safe"
+      },
+      {
+        "id": "d",
+        "text": "PUT cannot update"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "PUT replaces/updates idempotently; POST is not idempotent by default.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "hard",
+    "stem": "Render free web services typically:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Spin down after idle and need a cold start"
+      },
+      {
+        "id": "b",
+        "text": "Never sleep"
+      },
+      {
+        "id": "c",
+        "text": "Include free persistent disks always"
+      },
+      {
+        "id": "d",
+        "text": "Ban SQLite locally"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Free tier spins down after inactivity (~15 minutes).",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "hard",
+    "stem": "BFF (Backend for Frontend) pattern means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "API tailored to a specific client experience"
+      },
+      {
+        "id": "b",
+        "text": "Only GraphQL federation"
+      },
+      {
+        "id": "c",
+        "text": "Replacing CDN"
+      },
+      {
+        "id": "d",
+        "text": "Disabling CORS forever"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Each client type may get a purpose-built backend layer.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "hard",
+    "stem": "Content-Security-Policy primarily mitigates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "XSS by controlling allowed script sources"
+      },
+      {
+        "id": "b",
+        "text": "Slow SQL"
+      },
+      {
+        "id": "c",
+        "text": "Disk quotas"
+      },
+      {
+        "id": "d",
+        "text": "Git merge conflicts"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "CSP restricts where scripts/styles can load from.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "hard",
+    "stem": "Connection pooling is important because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Creating DB connections is expensive under load"
+      },
+      {
+        "id": "b",
+        "text": "HTTP/2 forbids reuse"
+      },
+      {
+        "id": "c",
+        "text": "Browsers cannot keep TCP"
+      },
+      {
+        "id": "d",
+        "text": "JSON cannot stream"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Pools reuse connections to cut handshake overhead.",
+    "source": "bank"
+  },
+  {
+    "track": "fullstack",
+    "difficulty": "hard",
+    "stem": "On ephemeral hosts, local SQLite data:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Can be lost on restart/spin-down unless externalized"
+      },
+      {
+        "id": "b",
+        "text": "Is always durable forever"
+      },
+      {
+        "id": "c",
+        "text": "Replicates multi-region automatically"
+      },
+      {
+        "id": "d",
+        "text": "Replaces object storage"
+      }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Ephemeral disks wipe local files on recycle.",
+    "source": "bank"
+  }
+]
