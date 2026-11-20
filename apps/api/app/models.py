@@ -40,10 +40,12 @@ class InterviewSession(Base):
     difficulty: Mapped[str] = mapped_column(String(16))
     question_count: Mapped[int] = mapped_column(Integer)
     status: Mapped[str] = mapped_column(String(16), default="in_progress")
+    source: Mapped[str] = mapped_column(String(16), default="bank")
     question_ids: Mapped[list] = mapped_column(JSON)
     score_correct: Mapped[int | None] = mapped_column(Integer, nullable=True)
     score_total: Mapped[int | None] = mapped_column(Integer, nullable=True)
     percent: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    coach_summary: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_utcnow)
     submitted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 

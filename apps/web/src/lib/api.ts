@@ -52,6 +52,8 @@ export type SessionResponse = {
   difficulty: string;
   status: string;
   question_count: number;
+  source?: "bank" | "groq";
+  generation_fallback?: boolean;
   questions: Question[];
 };
 
@@ -92,6 +94,8 @@ export type ResultsResponse = {
   total: number;
   correct: number;
   percent: number;
+  source?: "bank" | "groq";
+  coach_summary?: string | null;
   items: {
     question_id: string;
     stem: string;
@@ -119,6 +123,7 @@ export async function createSession(body: {
   track: string;
   difficulty: string;
   question_count: number;
+  mode?: "bank" | "groq";
 }) {
   const session = await request<SessionResponse>("/api/v1/sessions", {
     method: "POST",

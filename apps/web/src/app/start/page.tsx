@@ -17,7 +17,7 @@ function StartPageInner() {
   const [track, setTrack] = useState(searchParams.get("track") || "dsa");
   const [difficulty, setDifficulty] = useState("easy");
   const [count, setCount] = useState(5);
-  const [engine, setEngine] = useState<"bank" | "grok">("bank");
+  const [engine, setEngine] = useState<"bank" | "groq">("bank");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +37,17 @@ function StartPageInner() {
     return t?.difficulties?.[difficulty] ?? 0;
   }, [catalog, track, difficulty]);
 
+  useEffect(() => {
+    if (engine === "bank" && available > 0 && count > available) {
+      const next = [...COUNTS].reverse().find((n) => n <= available) ?? available;
+      setCount(next);
+    }
+  }, [engine, available, count]);
+
   const estMinutes = Math.max(1, Math.round(count * 1.5));
+
+  const bankBlocked = engine === "bank" && (available === 0 || count > available);
+  const canLaunch = !loading && !bankBlocked;
 
   async function onLaunch() {
     setLoading(true);
@@ -47,7 +57,11 @@ function StartPageInner() {
         track,
         difficulty,
         question_count: count,
+        mode: engine,
       });
+      if (session.generation_fallback) {
+        setError("Groq generation failed — launched with curated bank questions instead.");
+      }
       router.push(`/interview/${session.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to start");
@@ -138,7 +152,7 @@ function StartPageInner() {
             <div className="flex flex-wrap gap-gutter-sm">
               {COUNTS.map((n) => {
                 const selected = count === n;
-                const disabled = available > 0 && n > available;
+                const disabled = engine === "bank" && available > 0 && n > available;
                 return (
                   <button
                     key={n}
@@ -156,6 +170,11 @@ function StartPageInner() {
                 );
               })}
             </div>
+            {engine === "groq" ? (
+              <p className="font-body text-body-sm text-on-surface-variant">
+                Groq will generate fresh questions for this count (may take a few seconds).
+              </p>
+            ) : null}
           </section>
 
           <section className="bg-surface-container-low border border-outline-variant rounded-xl p-gutter-lg flex flex-col gap-gutter-md">
@@ -180,16 +199,19 @@ function StartPageInner() {
               </button>
               <button
                 type="button"
-                disabled
-                title="Coming soon"
-                className="rounded-md p-gutter-md text-left border-2 bg-surface-container border-outline-variant opacity-50 cursor-not-allowed"
+                onClick={() => setEngine("groq")}
+                className={`rounded-md p-gutter-md text-left border-2 transition-colors duration-state-change ease-state-change ${
+                  engine === "groq"
+                    ? "bg-accent-container border-primary"
+                    : "bg-surface-container border-outline-variant"
+                }`}
               >
                 <div className="flex items-center gap-gutter-sm mb-gutter-xs">
                   <Icon name="auto_awesome" className="text-title-md" />
-                  <span className="font-headline text-title-md">Grok AI</span>
+                  <span className="font-headline text-title-md">Groq AI</span>
                 </div>
                 <p className="font-body text-body-sm text-on-surface-variant">
-                  On-the-fly generation — soon.
+                  On-the-fly generation via Groq. Falls back to the bank if generation fails.
                 </p>
               </button>
             </div>
@@ -221,7 +243,9 @@ function StartPageInner() {
               </div>
               <div className="flex justify-between gap-gutter-sm">
                 <dt className="text-on-surface-variant">Source</dt>
-                <dd className="font-label text-label-lg">Curated Bank</dd>
+                <dd className="font-label text-label-lg">
+                  {engine === "groq" ? "Groq AI" : "Curated Bank"}
+                </dd>
               </div>
               <div className="flex justify-between gap-gutter-sm">
                 <dt className="text-on-surface-variant">Est. time</dt>
@@ -231,11 +255,17 @@ function StartPageInner() {
             <button
               type="button"
               onClick={onLaunch}
-              disabled={loading || count > available || available === 0}
+              disabled={!canLaunch}
               className="w-full inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-gutter-sm bg-accent text-on-accent rounded font-label text-label-lg transition-colors duration-state-change ease-state-change hover:bg-accent-container disabled:opacity-50"
             >
               <Icon name="rocket_launch" />
-              <span>{loading ? "Launching…" : "Launch Interview"}</span>
+              <span>
+                {loading
+                  ? engine === "groq"
+                    ? "Generating with Groq…"
+                    : "Launching…"
+                  : "Launch Interview"}
+              </span>
             </button>
             <Link
               href="/"

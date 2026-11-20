@@ -74,7 +74,8 @@ export default function ResultsPage() {
               </span>
               <h1 className="font-headline text-headline-md">Session Complete</h1>
               <p className="font-mono text-mono-sm opacity-80 tabular-nums">
-                Score {results.percent}% · Curated Bank
+                Score {results.percent}% ·{" "}
+                {results.source === "groq" ? "Groq AI" : "Curated Bank"}
               </p>
             </div>
           </section>
@@ -88,7 +89,7 @@ export default function ResultsPage() {
                 </h2>
               </div>
               <p className="font-body text-body-md text-on-surface-variant text-pretty">
-                {summaryCopy(results)}
+                {results.coach_summary?.trim() || summaryCopy(results)}
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-gutter-md">

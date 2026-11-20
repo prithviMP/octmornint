@@ -86,11 +86,11 @@ export function AppShell({ children, active }: AppShellProps) {
 
         <div className="hidden lg:flex flex-col gap-gutter-md p-gutter-md rounded-xl bg-sidebar-surface mt-gutter-xl">
           <div className="flex items-center justify-between">
-            <span className="font-label text-label-md text-accent">Grok AI Engine</span>
+            <span className="font-label text-label-md text-accent">Groq AI Engine</span>
             <Icon name="auto_awesome" className="text-accent text-title-md" />
           </div>
           <p className="font-body text-body-sm text-sidebar-muted text-pretty">
-            Curated MCQ bank ready now. Grok-powered generation coming next.
+            Curated bank plus on-the-fly Groq generation and coaching feedback.
           </p>
           <Link
             href="/start"

@@ -21,14 +21,21 @@ def create_session(
     db: Session = Depends(get_db),
     client_token: str | None = Depends(optional_client_token),
 ) -> SessionResponse:
-    session = session_service.create_session(
+    session, generation_fallback = session_service.create_session(
         db,
         body.track,
         body.difficulty,
         body.question_count,
         client_token=client_token,
+        mode=body.mode,
     )
-    return SessionResponse(**session_service.session_with_questions(db, session))
+    return SessionResponse(
+        **session_service.session_with_questions(
+            db,
+            session,
+            generation_fallback=generation_fallback,
+        )
+    )
 
 
 @router.get("/sessions/{session_id}", response_model=SessionResponse)

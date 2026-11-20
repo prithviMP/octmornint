@@ -28,3 +28,14 @@ def ensure_schema(engine: Engine) -> None:
                     "ON interview_sessions (client_token)"
                 )
             )
+        if "source" not in columns:
+            conn.execute(
+                text(
+                    "ALTER TABLE interview_sessions "
+                    "ADD COLUMN source VARCHAR(16) NOT NULL DEFAULT 'bank'"
+                )
+            )
+        if "coach_summary" not in columns:
+            conn.execute(
+                text("ALTER TABLE interview_sessions ADD COLUMN coach_summary TEXT")
+            )

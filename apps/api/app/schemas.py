@@ -27,10 +27,14 @@ class CatalogResponse(BaseModel):
     tracks: list[CatalogTrack]
 
 
+SessionMode = Literal["bank", "groq"]
+
+
 class CreateSessionRequest(BaseModel):
     track: Track
     difficulty: Difficulty
     question_count: int = Field(ge=1, le=20)
+    mode: SessionMode = "bank"
 
 
 class SessionResponse(BaseModel):
@@ -40,6 +44,8 @@ class SessionResponse(BaseModel):
     difficulty: str
     status: str
     question_count: int
+    source: str = "bank"
+    generation_fallback: bool = False
     questions: list[QuestionPublic]
 
 
@@ -103,6 +109,8 @@ class ResultsResponse(BaseModel):
     total: int
     correct: int
     percent: int
+    source: str = "bank"
+    coach_summary: str | None = None
     items: list[ResultItem]
 
 

@@ -5,9 +5,9 @@ from fastapi import HTTPException
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from app.models import InterviewSession, SessionAnswer
+from app.models import InterviewSession, Question, SessionAnswer
 from app.schemas import AnswerItem, QuestionPublic
-from app.services import bank, grading
+from app.services import bank, grading, groq
 
 
 def _public_questions(questions) -> list[QuestionPublic]:
@@ -15,6 +15,30 @@ def _public_questions(questions) -> list[QuestionPublic]:
         QuestionPublic(id=q.id, stem=q.stem, options=q.options)
         for q in questions
     ]
+
+
+def _insert_generated_questions(
+    db: Session,
+    track: str,
+    difficulty: str,
+    payloads: list[dict],
+) -> list[Question]:
+    rows: list[Question] = []
+    for item in payloads:
+        row = Question(
+            track=track,
+            difficulty=difficulty,
+            stem=item["stem"],
+            options=item["options"],
+            correct_option_id=item["correct_option_id"],
+            explanation=item["explanation"],
+            source="groq",
+            is_active=True,
+        )
+        db.add(row)
+        rows.append(row)
+    db.flush()
+    return rows
 
 
 def _iso(dt: datetime | None) -> str | None:
@@ -56,15 +80,34 @@ def create_session(
     difficulty: str,
     question_count: int,
     client_token: str | None = None,
-) -> InterviewSession:
+    mode: str = "bank",
+) -> tuple[InterviewSession, bool]:
     token = (client_token or "").strip() or str(uuid.uuid4())
-    questions = bank.sample_questions(db, track, difficulty, question_count)
+    source = "bank"
+    generation_fallback = False
+    questions: list[Question]
+
+    if mode == "groq":
+        try:
+            if not groq.is_configured():
+                raise RuntimeError("GROQ_API_KEY is not configured")
+            payloads = groq.generate_mcqs(track, difficulty, question_count)
+            questions = _insert_generated_questions(db, track, difficulty, payloads)
+            source = "groq"
+        except Exception:
+            generation_fallback = True
+            questions = bank.sample_questions(db, track, difficulty, question_count)
+            source = "bank"
+    else:
+        questions = bank.sample_questions(db, track, difficulty, question_count)
+
     session = InterviewSession(
         client_token=token,
         track=track,
         difficulty=difficulty,
         question_count=question_count,
         status="in_progress",
+        source=source,
         question_ids=[q.id for q in questions],
     )
     db.add(session)
@@ -73,7 +116,7 @@ def create_session(
         db.add(SessionAnswer(session_id=session.id, question_id=q.id))
     db.commit()
     db.refresh(session)
-    return session
+    return session, generation_fallback
 
 
 def get_session_or_404(db: Session, session_id: str) -> InterviewSession:
@@ -83,7 +126,12 @@ def get_session_or_404(db: Session, session_id: str) -> InterviewSession:
     return session
 
 
-def session_with_questions(db: Session, session: InterviewSession) -> dict:
+def session_with_questions(
+    db: Session,
+    session: InterviewSession,
+    *,
+    generation_fallback: bool = False,
+) -> dict:
     questions = bank.get_questions_by_ids(db, session.question_ids)
     return {
         "id": session.id,
@@ -92,6 +140,8 @@ def session_with_questions(db: Session, session: InterviewSession) -> dict:
         "difficulty": session.difficulty,
         "status": session.status,
         "question_count": session.question_count,
+        "source": getattr(session, "source", None) or "bank",
+        "generation_fallback": generation_fallback,
         "questions": _public_questions(questions),
     }
 
@@ -222,16 +272,39 @@ def submit_session(db: Session, session: InterviewSession, answers: list[AnswerI
     session.submitted_at = datetime.now(timezone.utc)
     db.commit()
 
-    return {
-        "session_id": session.id,
-        "track": session.track,
-        "difficulty": session.difficulty,
-        "status": session.status,
-        "total": total,
-        "correct": correct,
-        "percent": percent,
-        "items": items,
-    }
+    _maybe_attach_coach(db, session, questions, answers_by_qid, percent)
+
+    return build_results(db, session)
+
+
+def _maybe_attach_coach(
+    db: Session,
+    session: InterviewSession,
+    questions: list[Question],
+    answers_by_qid: dict[str, str | None],
+    percent: int,
+) -> None:
+    if session.coach_summary or not groq.is_configured():
+        return
+    wrong_stems = [
+        q.stem
+        for q in questions
+        if answers_by_qid.get(q.id) != q.correct_option_id
+    ]
+    try:
+        summary = groq.coach_summary(
+            session.track,
+            session.difficulty,
+            percent,
+            wrong_stems,
+        )
+    except Exception:
+        return
+    if not summary:
+        return
+    session.coach_summary = summary
+    db.commit()
+    db.refresh(session)
 
 
 def build_results(db: Session, session: InterviewSession) -> dict:
@@ -256,5 +329,7 @@ def build_results(db: Session, session: InterviewSession) -> dict:
         "total": session.score_total if session.score_total is not None else total,
         "correct": session.score_correct if session.score_correct is not None else correct,
         "percent": session.percent if session.percent is not None else percent,
+        "source": getattr(session, "source", None) or "bank",
+        "coach_summary": session.coach_summary,
         "items": items,
     }
